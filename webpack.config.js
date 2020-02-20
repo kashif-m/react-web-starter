@@ -16,7 +16,7 @@ module.exports = {
   entry: './src/index.js',
   output: {
     path: path.join(__dirname, '/build'),
-    filename: '[name].[chunkhash].js',
+    filename: '[name].[hash].js',
     publicPath: '/'
   },
   module: {
@@ -27,22 +27,15 @@ module.exports = {
         use: 'babel-loader'
       },
       {
-        test: /.s*[ac]ss$/,
-        use: ['style-loader', MiniCSSExtractPlugin.loader, 'css-loader', 'sass-loader']
+        test: /.(sa|c)ss$/,
+        use: ['style-loader', 'css-loader', 'sass-loader']
       },
       {
-        test: /.(ttf|otf|svg)/,
+        test: /.(ttf|otf|svg|png|jpg|jpeg|mp4)/,
         use: 'file-loader'
       }
     ]
   },
-  plugins: [CSSPlugin, HTMLPlugin],
-  devServer: {
-    proxy: [{
-      context: ['/*'],
-      target: 'http://localhost:5000'
-    }],
-    historyApiFallback: true
-  },
+  plugins: [HTMLPlugin, CSSPlugin],
   devtool: 'inline-source-map'
 }
