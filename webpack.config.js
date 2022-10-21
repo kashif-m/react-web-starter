@@ -1,41 +1,40 @@
-
-const path = require('path')
-const HTMLWebpackPlugin = require('html-webpack-plugin')
-const MiniCSSExtractPlugin = require('mini-css-extract-plugin')
+const path = require("path");
+const HTMLWebpackPlugin = require("html-webpack-plugin");
+const MiniCSSExtractPlugin = require("mini-css-extract-plugin");
 
 const CSSPlugin = new MiniCSSExtractPlugin({
-  filename: 'style.[contenthash].css'
-})
+  filename: "style.[contenthash].css",
+});
 
 const HTMLPlugin = new HTMLWebpackPlugin({
-  template: './src/index.html',
-  filename: 'index.html'
-})
+  template: "./src/index.html",
+  filename: "index.html",
+});
 
 module.exports = {
-  entry: './src/index.js',
+  entry: "./src/index.js",
   output: {
-    path: path.join(__dirname, '/build'),
-    filename: '[name].[hash].js',
-    publicPath: '/'
+    path: path.join(__dirname, "/build"),
+    filename: "[name].[hash].js",
+    publicPath: "/",
   },
   module: {
     rules: [
       {
         test: /.js(x)?$/,
         exclude: /node_modules/,
-        use: 'babel-loader'
+        use: "babel-loader",
       },
       {
         test: /.(sa|c)ss$/,
-        use: ['style-loader', 'css-loader', 'sass-loader']
+        use: ["style-loader", "css-loader", "sass-loader"],
       },
       {
         test: /.(ttf|otf|svg|png|jpg|jpeg|mp4)/,
-        use: 'file-loader'
-      }
-    ]
+        use: "file-loader",
+      },
+    ],
   },
   plugins: [HTMLPlugin, CSSPlugin],
-  devtool: 'inline-source-map'
-}
+  devtool: "inline-source-map",
+};

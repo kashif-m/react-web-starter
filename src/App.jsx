@@ -1,17 +1,12 @@
-
-import React, { Component } from 'react'
-import { hot } from 'react-hot-loader/root'
+import React, { Component } from "react";
+import { hot } from "react-hot-loader/root";
 
 class App extends Component {
+  state = {};
 
-	state = {}
-
-    render() {
-
-        return (
-            <div className="app"></div>
-        )
-    }
+  render() {
+    return <div className="app"></div>;
+  }
 }
 
-export default hot(App)
+export default hot(App);
